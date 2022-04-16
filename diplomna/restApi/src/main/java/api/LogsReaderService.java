@@ -2,7 +2,6 @@ package api;
 
 
 import api.models.EventLogsData;
-import api.models.UserAction;
 import hadoop.LogsPerDate;
 
 import java.io.BufferedReader;
@@ -17,7 +16,7 @@ import java.util.Map;
 public class LogsReaderService {
   
   public static List<EventLogsData> getLogsForGivenDate(String date) throws Exception {
-    File file = new File("/Users/i338442/diplomna/tesst/src/main/resources/logsPerDate" + date.replace("/", "-") + "/part-r-00000");
+    File file = new File("/Users/i338442/diplomna/backend/src/main/resources/logsPerDate" + date.replace("/", "-") + "/part-r-00000");
     
     if (!file.exists()) {
       LogsPerDate.main(new String[] {date});

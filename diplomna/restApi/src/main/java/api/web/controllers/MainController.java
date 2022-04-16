@@ -43,7 +43,7 @@ public class MainController {
 
     return "logsSearch";
   }
-
+  
   @RequestMapping(value = "/homePage")
   public String login(Model model) throws IOException {
 
@@ -96,7 +96,7 @@ public class MainController {
   @GetMapping(value = "/getUserIds")
   public String getUserIds(@ModelAttribute("search") Search search, Model model) throws Exception {
 
-    File file = new File("/Users/i338442/diplomna/tesst/src/main/resources/outputUserIds/part-r-00000");
+    File file = new File("/Users/i338442/diplomna/backend/src/main/resources/outputUserIds/part-r-00000");
     BufferedReader br = new BufferedReader(new FileReader(file));
 
     Map<String, Integer> result = new HashMap<>();
@@ -123,7 +123,7 @@ public class MainController {
   @GetMapping(value = "/getEvents")
   public String getTypesOfEvents(@ModelAttribute("search") Search search, Model model) throws Exception {
 
-    File file = new File("/Users/i338442/diplomna/tesst/src/main/resources/outputEventContext/part-r-00000");
+    File file = new File("/Users/i338442/diplomna/backend/src/main/resources/outputEventContext/part-r-00000");
     BufferedReader br = new BufferedReader(new FileReader(file));
 
     Map<String, Integer> result = new HashMap<>();
@@ -170,7 +170,7 @@ public class MainController {
   private Map<String, Integer> getUserActionsById(String userId) throws Exception {
     UserWithIdActionsCount.execute(new String[]{userId});
 
-    File file = new File("/Users/i338442/diplomna/tesst/src/main/resources/outputUserIdsActionsCount" + userId + "/part-r-00000");
+    File file = new File("/Users/i338442/diplomna/backend/src/main/resources/outputUserIdsActionsCount" + userId + "/part-r-00000");
     BufferedReader br = new BufferedReader(new FileReader(file));
 
     Map<String, Integer> result = new HashMap<>();

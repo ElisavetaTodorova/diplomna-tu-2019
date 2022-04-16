@@ -19,67 +19,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
-  @RequestMapping("/getUserIdsMostActiveUser")
-  public String getUserCount() {
-    UsersIdFormatter usersIdFormatter = new UsersIdFormatter();
-
-    Map<Integer, Integer> userIdsSortedByMostActiveUser = usersIdFormatter.getUserIdsSortedByMostActiveUser();
-
-    JSONObject jsonObject = new JSONObject(userIdsSortedByMostActiveUser);
-
-    return jsonObject.toString();
-  }
-
-  @RequestMapping("getUsersCountAcceding")
-  public String getUserCountAcceding() {
-    UsersIdFormatter usersIdFormatter = new UsersIdFormatter();
-
-    Map<Integer, Integer> userIdsSortedByMostActiveUser = usersIdFormatter.getUserIdsSortedByMostActiveUser();
-
-    JSONObject jsonObject = new JSONObject(userIdsSortedByMostActiveUser);
-
-    return jsonObject.toString();
-  }
-
-  @RequestMapping(value = "/actions/{id}", method = GET)
-  @ResponseBody
-  public String getUserActions(@PathVariable String id) throws Exception {
-
-
-    Map<String, Integer> userActionsById = getUserActionsById(id);
-
-    JSONObject jsonObject = new JSONObject(userActionsById);
-
-    return jsonObject.toString();
-  }
-
-  private Map<String, Integer> getUserActionsById(String userId) throws Exception {
-    UserWithIdActionsCount.execute(new String[]{userId});
-
-    File file = new File("/Users/i338442/diplomna/tesst/src/main/resources/outputUserIdsActionsCount" + userId + "/part-r-00000");
-    BufferedReader br = new BufferedReader(new FileReader(file));
-
-    Map<String, Integer> result = new HashMap<>();
-    String st;
-    while ((st = br.readLine()) != null) {
-      String[] split = st.split("\t");
-
-      result.put(split[0], Integer.parseInt(split[1]));
-    }
-
-    return result;
-  }
-
-  @RequestMapping(value = "/test/test", method = GET)
-  public JSONArray getData(HttpServletResponse response) throws IOException, ParseException {
-    Map<Integer, Integer> resultMap = getUsersActivity();
-
-    response.setContentType(ContentType.APPLICATION_JSON.toString());
-
-    return new JSONArray(resultMap.values().toString());
-  }
-
-
   @RequestMapping(value = "/getMainPageData", method = GET)
   public Map<String, Object> getMainPageData(HttpServletResponse response) throws IOException {
 
@@ -105,7 +44,7 @@ public class RestController {
   }
   
   public int[] getEventsList() throws IOException {
-    File file = new File("/Users/i338442/diplomna/tesst/src/main/resources/outputEventContext/part-r-00000");
+    File file = new File("/Users/i338442/diplomna/backend/src/main/resources/outputEventContext/part-r-00000");
     BufferedReader br = new BufferedReader(new FileReader(file));
 
     Map<String, Integer> result = new HashMap<>();
@@ -158,7 +97,7 @@ public class RestController {
   }
   
   private int getNumberOfCourses() throws IOException {
-    File file = new File("/Users/i338442/diplomna/tesst/src/main/resources/outputCourses/part-r-00000");
+    File file = new File("/Users/i338442/diplomna/backend/src/main/resources/outputCourses/part-r-00000");
     BufferedReader br = new BufferedReader(new FileReader(file));
 
     int result = 0;
@@ -174,7 +113,7 @@ public class RestController {
 
   private int getNumberOfUsers() throws IOException {
 
-    File file = new File("/Users/i338442/diplomna/tesst/src/main/resources/outputUserIds/part-r-00000");
+    File file = new File("/Users/i338442/diplomna/backend/src/main/resources/outputUserIds/part-r-00000");
     BufferedReader br = new BufferedReader(new FileReader(file));
 
     int result = 0;
@@ -188,7 +127,7 @@ public class RestController {
   }
 
   private Map<Integer, Integer> getUsersActivity() throws IOException {
-    File file = new File("/Users/i338442/diplomna/tesst/src/main/resources/usersActiveTime/part-r-00000");
+    File file = new File("/Users/i338442/diplomna/backend/src/main/resources/usersActiveTime/part-r-00000");
     BufferedReader br = new BufferedReader(new FileReader(file));
 
     Map<Integer, Integer> resultMap = new HashMap<>();
@@ -215,8 +154,7 @@ public class RestController {
           int value = (resultMap.get(mount) == null ? 0 : resultMap.get(mount)) + Integer.parseInt(split[1]);
           resultMap.put(mount, value);
         }
-
-
+        
       }
 
     }
@@ -230,19 +168,6 @@ public class RestController {
 
     return resultMap;
   }
-
-  @RequestMapping(value = "/avrgUserActivity", method = RequestMethod.GET)
-  public String getAverageUserActivity() throws IOException {
-
-    return (getUsersActivity().values().stream().mapToInt(Integer::intValue).sum() / 12) + "";
-  }
-
-  @RequestMapping(value = "/mostActiveTime", method = RequestMethod.GET)
-  public int getMostActiveTime() throws IOException {
-
-    Integer[] integers = getUsersActivity().values().stream().sorted().toArray(Integer[]::new);
-
-    return integers[11];
-  }
+  
 
 }

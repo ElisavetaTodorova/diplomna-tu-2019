@@ -16,7 +16,7 @@ public class ServiceUtil {
 
   
   public Map<Integer, Integer> getUsersActivity() throws IOException {
-    File file = new File("/Users/i338442/diplomna/tesst/src/main/resources/usersActiveTime/part-r-00000");
+    File file = new File("/Users/i338442/diplomna/backend/src/main/resources/usersActiveTime/part-r-00000");
     BufferedReader br = new BufferedReader(new FileReader(file));
 
     Map<Integer, Integer> resultMap = new HashMap<>();
@@ -60,7 +60,7 @@ public class ServiceUtil {
   }
 
   public int[] getEventsList() throws IOException {
-    File file = new File("/Users/i338442/diplomna/tesst/src/main/resources/outputEventContext/part-r-00000");
+    File file = new File("/Users/i338442/diplomna/backend/src/main/resources/outputEventContext/part-r-00000");
     BufferedReader br = new BufferedReader(new FileReader(file));
 
     Map<String, Integer> result = new HashMap<>();
@@ -113,7 +113,7 @@ public class ServiceUtil {
   }
 
   public int getNumberOfCourses() throws IOException {
-    File file = new File("/Users/i338442/diplomna/tesst/src/main/resources/outputCourses/part-r-00000");
+    File file = new File("/Users/i338442/diplomna/backend/src/main/resources/outputCourses/part-r-00000");
     BufferedReader br = new BufferedReader(new FileReader(file));
 
     int result = 0;
@@ -129,7 +129,7 @@ public class ServiceUtil {
 
   public int getNumberOfUsers() throws IOException {
 
-    File file = new File("/Users/i338442/diplomna/tesst/src/main/resources/outputUserIds/part-r-00000");
+    File file = new File("/Users/i338442/diplomna/backend/src/main/resources/outputUserIds/part-r-00000");
     BufferedReader br = new BufferedReader(new FileReader(file));
 
     int result = 0;

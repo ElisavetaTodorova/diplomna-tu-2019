@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/backend/backend.iml" filepath="$PROJECT_DIR$/backend/backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/diplomna.iml" filepath="$PROJECT_DIR$/.idea/diplomna.iml" />
+      <module fileurl="file://$PROJECT_DIR$/restApi/restApi.iml" filepath="$PROJECT_DIR$/restApi/restApi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/userFormatter/userFormatter.iml" filepath="$PROJECT_DIR$/userFormatter/userFormatter.iml" />
+    </modules>
+  </component>
+</project>
